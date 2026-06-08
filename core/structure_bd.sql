@@ -71,6 +71,16 @@ CREATE TABLE disponibilites (
     FOREIGN KEY (mentor_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
     UNIQUE(mentor_id, jour, heure_debut)
 );
+-- Table disponibilités_mentores 
+CREATE TABLE disponibilites_mentores (
+    id SERIAL PRIMARY KEY,
+    mentore_id INT NOT NULL,
+    jour VARCHAR(10) NOT NULL CHECK (jour IN ('Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche')),
+    heure_debut TIME NOT NULL,
+    heure_fin TIME NOT NULL,
+    FOREIGN KEY (mentore_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
+    UNIQUE(mentore_id, jour, heure_debut)
+);
 
 -- Table sessions
 CREATE TABLE sessions (
