@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-=^1ft(%38m-*=2na1z3u-0rx$3x2lhs(lpj&txo+cn$pho1zlp
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://backspace-decathlon-unroasted.ngrok-free.dev']
+
 
 
 # Application definition
