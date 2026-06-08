@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Base de données
+db.sqlite3
+
+# Environnement virtuel
+venv/
+env/
+
+# Variables d'environnement
+.env
+
+# Ngrok
+ngrok.exe
+
+# VS Code
+.vscode/
