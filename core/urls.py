@@ -17,4 +17,5 @@ urlpatterns = [
     path('conversations/<int:conversation_id>/', views.voir_conversation, name='voir_conversation'),
     path('conversations/<int:conversation_id>/envoyer/', views.envoyer_message, name='envoyer_message'),
     path('nouvelle-conversation/<int:utilisateur_id>/', views.nouvelle_conversation, name='nouvelle_conversation'),
+    path('profil/modifier/', views.modifier_profil, name='modifier_profil'),
 ]

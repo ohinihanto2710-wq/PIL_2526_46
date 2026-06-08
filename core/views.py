@@ -186,3 +186,41 @@ def demarrer_conversation(request, utilisateur_id):
     nouvelle_conversation.save()
 
     return redirect('detail_conversation', conversation_id=nouvelle_conversation.id)
+
+# ============================================================
+# MODIFICATION DU PROFIL
+# ============================================================
+@login_required
+def modifier_profil(request):
+    if request.method == 'POST':
+        utilisateur = request.user
+
+        # Informations de base
+        utilisateur.first_name = request.POST.get('first_name', utilisateur.first_name)
+        utilisateur.last_name = request.POST.get('last_name', utilisateur.last_name)
+        utilisateur.email = request.POST.get('email', utilisateur.email)
+        utilisateur.telephone = request.POST.get('telephone', utilisateur.telephone)
+        utilisateur.filiere = request.POST.get('filiere', utilisateur.filiere)
+        utilisateur.niveau = request.POST.get('niveau', utilisateur.niveau)
+        utilisateur.bio = request.POST.get('bio', utilisateur.bio)
+        utilisateur.disponibilites = request.POST.get('disponibilites', utilisateur.disponibilites)
+
+        # Modification du mot de passe (optionnel)
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+
+        if password1 and password2:
+            if password1 != password2:
+                messages.error(request, "Les mots de passe ne correspondent pas.")
+                return redirect('modifier_profil')
+            utilisateur.set_password(password1)
+            messages.success(request, "Mot de passe modifié avec succès.")
+
+        utilisateur.save()
+        messages.success(request, "Profil mis à jour avec succès !")
+        return redirect('profil')
+
+    return render(request, 'core/modifier_profil.html', {
+        'utilisateur': request.user,
+        'filieres': Utilisateur.FILIERES,
+    })
