@@ -11,4 +11,10 @@ urlpatterns = [
     path('mentors/', views.liste_mentors, name='liste_mentors'),
     path('mentores/', views.liste_mentores, name='liste_mentores'),
     path('matching/', views.matching, name='matching'),
+
+    # Messagerie
+    path('conversations/', views.liste_conversations, name='liste_conversations'),
+    path('conversations/<int:conversation_id>/', views.voir_conversation, name='voir_conversation'),
+    path('conversations/<int:conversation_id>/envoyer/', views.envoyer_message, name='envoyer_message'),
+    path('nouvelle-conversation/<int:utilisateur_id>/', views.nouvelle_conversation, name='nouvelle_conversation'),
 ]
