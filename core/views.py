@@ -512,6 +512,7 @@ def list_messages(request, match_id):
     """Liste tous les messages d'un match spécifique"""
     try:
         match = Match.objects.get(id=match_id)
+        from .models import Message
         messages = Message.objects.filter(match=match).order_by('date_envoi')
         
         data = [{
