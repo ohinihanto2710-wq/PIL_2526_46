@@ -1,0 +1,362 @@
+# EXPLICATION ET URLs
+ ## URL de notre app en local http://127.0.0.1:8000
+
+---
+
+## 1. Authentification
+
+### Inscription
+# Créer un nouveau compte utilisateur
+- *URL* : /inscription/
+- *Méthode* : POST
+- *Body* :
+{
+    "matricule": "21B001",
+    "nom": "Doe",
+    "prenom": "John",
+    "telephone": "97000001",
+    "email_ifri": "john@ifri.uac.bj",
+    "promo": "2024",
+    "filiere": "GL",
+    "role": "mentor",
+    "mot_de_passe_hash": "motdepasse",
+    "bio": "Ma bio ou un petit commentaire de ta biographie",
+    "points_forts": "Python, SQL",
+    "points_faibles": "Réseaux"
+}
+{
+    "matricule": "ENS002",
+    "nom": "NDIAYE",
+    "prenom": "Ousmane",
+    "telephone": "779876543",
+    "email_ifri": "ousmane@ifri.com",
+    "promo": "Master",
+    "filiere": "Mathématiques",
+    "role": "mentor",
+    "mot_de_passe_hash": "pass123",
+    "points_forts": "Algorithmique, Java, C++"
+}
+- *Réponse succès* : {"message": "Inscription réussie", "id": 1}
+- *Réponse erreur* : {"erreur": "Matricule déjà utilisé"}
+
+### Connexion
+# Connecter un utilisateur existant (par matricule, email ou téléphone)
+- *URL* : /connexion/
+- *Méthode* : POST
+- *Body* :
+{
+    "identifiant": "email ou téléphone ou matricule",
+    "mot_de_passe": "motdepasse"
+}
+{
+     "matricule": "ENS002",
+     "mot_de_passe_hash": "pass123"
+      
+}
+- *Réponse succès* : {"message": "Connexion réussie", "id": 1, "nom": "Doe", "prenom": "John", "role": "mentor"}
+- *Réponse erreur* : {"erreur": "Mot de passe incorrect"}
+
+### Réinitialisation mot de passe
+# Changer le mot de passe d'un utilisateur
+- *URL* : /reinitialiser-mot-de-passe/
+- *Méthode* : POST
+- *Body* :
+{
+    "identifiant": "email ou téléphone ou matricule",
+    "nouveau_mot_de_passe": "nouveaumotdepasse"
+}
+- *Réponse succès* : {"message": "Mot de passe réinitialisé avec succès"}
+
+---
+
+## 2. Profil
+###voir profil
+-GET /utilisateurs/{id}
+
+### Modifier profil
+# Mettre à jour les informations d'un utilisateur
+- *URL* : /utilisateurs/<id>/modifier/
+- *Méthode* : POST
+- *Body* : (envoyer seulement les champs à modifier)
+{
+    "bio": "Nouvelle bio",
+    "points_forts": "Python, Django",
+    "points_faibles": "Réseaux",
+    "mot_de_passe": "nouveaumotdepasse"
+}
+- *Réponse succès* : {"message": "Profil mis à jour avec succès"}
+
+### Liste utilisateurs
+# Récupérer tous les utilisateurs
+- *URL* : /utilisateurs/
+- *Méthode* : GET
+- *Réponse* : Liste de tous les utilisateurs
+
+---
+
+## 3. Compétences
+
+### Liste compétences
+# Récupérer toutes les compétences disponibles
+- *URL* : /competences/
+- *Méthode* : GET
+- *Réponse* : [{"id": 1, "nom": "Python"}, ...]
+
+---
+
+## 4. Matching
+
+### Trouver des mentors compatibles
+# Algorithme qui propose les meilleurs mentors pour un mentoré
+# Score basé sur : compétences communes (pointfortmentor ==pointfaiblementore), même filière ou EC communs, disponibilités : surtout pour le mentor
+- *URL* : /matching/<mentore_id>/
+- *Méthode* : GET
+- *Réponse* :
+[
+    {
+        "mentor_id": 1,
+        "nom": "Horeb",
+        "prenom": "Admin",
+        "filiere": "GL",
+        "points_forts": "Python, SQL",
+        "competences_communes": ["Python"],
+        "score": 50
+        "horaires_compatibles"......
+        "créneaux":[..........]
+    }
+]
+
+---
+
+## 5. Matchs
+
+### Créer un match / attribution de mentor aux mentorés
+# Envoyer une demande de mentorat
+- *URL* : /matches/creer/
+- *Méthode* : POST
+- *Body* :
+{
+    "mentor_id": 1,
+    "mentore_id": 2,
+    "objectif": "Apprendre Python"
+}
+- *Réponse succès* : {"message": "Demande de mentorat envoyée!", "id": 1}
+- *Réponse erreur* : {"erreur": "Match déjà existant"}
+
+### Répondre à un match
+# Accepter, refuser ou terminer une demande de mentorat
+- *URL* : /matches/<match_id>/repondre/
+- *Méthode* : POST
+- *Body* :
+{
+    "statut": "accepte"
+}
+# Statuts possibles : accepte, annule, termine, en_attente
+- *Réponse* : {"message": "Demande de mentorat acceptée!", "statut": "accepte"}
+
+### Liste des matchs
+# Récupérer tous les matchs
+- *URL* : /matches/
+- *Méthode* : GET
+
+---
+
+## 6. Disponibilités
+
+### Ajouter une disponibilité
+# Définir les créneaux horaires d'un mentor
+- *URL* : /disponibilites/ajouter/
+- *Méthode* : POST
+- *Body* :
+{
+    "mentor_id": 1,
+    "jour": "Lundi",
+    "heure_debut": "14:00",
+    "heure_fin": "16:00"
+}
+# Jours possibles : Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi, Dimanche
+- *Réponse succès* : {"message": "Disponibilité ajoutée", "id": 1}
+
+### Liste disponibilités d'un mentor
+# Voir les créneaux d'un mentor
+- *URL* : /disponibilites/mentor/<mentor_id>/
+- *Méthode* : GET
+### disponibilités d'un mentoré
+methode= POST
+URLs: /disponibilites/mentore/mentore_id/
+données : {
+    "jour": "Lundi",
+    "heure_debut": "15:00",
+    "heure_fin": "17:00"
+}
+### voir disponibilites mentoré
+methode : GET
+URL : /disponibilites/mentore/mentor_id/
+
+---
+
+## 7. Sessions
+
+### Planifier une session
+# Créer un rendez-vous entre mentor et mentoré
+- *URL* : /sessions/planifier/
+- *Méthode* : POST
+- *Body* :
+{
+    "match_id": 1,
+    "date_session": "2026-06-10 14:00:00",
+    "duree": 60,
+    "notes": "Première session sur Python"
+}
+- *Réponse succès* : {"message": "Session planifiée", "id": 1}
+
+### Liste sessions d'un match
+# Voir toutes les sessions d'un match
+- *URL* : /sessions/<match_id>/
+- *Méthode* : GET
+
+---
+
+## 8. Messages
+
+### Envoyer un message
+# Envoyer un message dans une conversation
+- *URL* : /messages/envoyer/
+- *Méthode* : POST
+- *Body* :
+{
+    "match_id": 1,
+    "expediteur_id": 1,
+    "contenu": "Bonjour, es-tu disponible lundi ?"
+}
+- *Réponse succès* : {"message": "Message envoyé", "id": 1}
+
+### Liste messages d'un match
+# Récupérer tout l'historique des messages d'une conversation
+- *URL* : /messages/<match_id>/
+- *Méthode* : GET
+- *Réponse* : Liste des messages triés par date
+### voir conversations
+-methode: GET
+URL: /conversations/<utilisateur_id>/
+## 9. WebSocket - Messagerie en temps réel
+
+### Connexion à une conversation
+- *URL* : ws://localhost:8000/ws/chat/<match_id>/
+- *Protocole* : WebSocket
+- *Description* : Connecte l'utilisateur à la salle de chat du match en temps réel
+
+### Envoyer un message en temps réel
+# Format du message à envoyer via WebSocket
+{
+    "contenu": "Bonjour !",
+    "expediteur_id": 1
+}
+
+### Réponse reçue en temps réel
+# Format du message reçu par tous les membres connectés
+{
+    "message": "Bonjour !",
+    "expediteur_id": 1,
+    "message_id": 5
+}
+
+---
+
+## 10. Offres et Demandes
+
+### Publier une offre ou demande
+# type_offre : "offre" (je propose du mentorat) ou "demande" (je cherche un mentor)
+- *URL* : /offres/publier/
+- *Méthode* : POST
+- *Body* :
+{
+    "utilisateur_id": 1,
+    "type_offre": "offre",
+    "competences": "Python, SQL, Django",
+    "disponibilites": "Lundi 14h-16h",
+    "format": "enligne",
+    "description": "Je propose du mentorat en Python"
+}
+# format possible : presentiel, enligne, les_deux
+
+### Liste des offres
+# Peut être filtré par type ou compétence
+- *URL* : /offres/
+- *Méthode* : GET
+- *Filtres* : /offres/?type=offre ou /offres/?competence=Python
+
+---
+
+## 11. Profil
+
+### Voir le profil complet d'un utilisateur
+# Retourne toutes les infos + disponibilités + compétences
+- *URL* : /utilisateurs/<id>/
+- *Méthode* : GET
+
+### Upload photo de profil
+- *URL* : /utilisateurs/<id>/photo/
+- *Méthode* : POST
+- *Body* : Form-data avec champ "photo" (jpg ou png)
+-OU  URL: http://127.0.0.1:8000/utilisateurs/id/upload_page/
+
+---
+
+## 12. Conversations
+
+### Liste des conversations d'un utilisateur
+# Retourne tous les matchs acceptés avec le dernier message
+- *URL* : /conversations/<utilisateur_id>/
+- *Méthode* : GET
+- *Réponse* :
+[
+    {
+        "match_id": 1,
+        "interlocuteur_id": 2,
+        "interlocuteur_nom": "Dupont",
+        "interlocuteur_prenom": "Jean",
+        "dernier_message": "Bonjour !",
+        "date_dernier_message": "2026-06-05 11:00:00",
+        "objectif": "Apprendre Python"
+    }
+]
+##13  MOT DE PASSE 
+--methode : POST
+URL: /reinitialiser-mot-de-passe/
+Données {"action": "demande",
+"identifiant" : "amadou@ifri"}
+## 14 déconnexion 
+methode : POST 
+URL: /deconnexion/
+##14 ALGO DE Score
+________________________________________________________________________
+|     CRITERES                             |  POINTS                    |
+|                                          |
+|     Comptences communes                  |+30 par competence          |
+|     Mème filière                         |+20                         |
+|     Horaire compatibles                  |+10                         |
+|Horaire compatibles                       |+1 à +5                     |
+|Mentor disponibles                        |+3                          |
+________________________________________________________________________
+### COMMANDES DE TESTS
+# Inscription mentoré
+curl -X POST http://127.0.0.1:8000/inscription/ -H "Content-Type: application/json" -d '{"matricule":"ETU001","nom":"DIOP","prenom":"Amadou","telephone":"771234567","email_ifri":"amadou@ifri.com","promo":"L3","filiere":"Informatique","role":"mentore","mot_de_passe":"pass123","points_faibles":"Python"}'
+
+# Inscription mentor
+curl -X POST http://127.0.0.1:8000/inscription/ -H "Content-Type: application/json" -d '{"matricule":"ENS001","nom":"FALL","prenom":"Marième","telephone":"778765432","email_ifri":"marieme@ifri.com","promo":"Master","filiere":"Informatique","role":"mentor","mot_de_passe":"pass123","points_forts":"Python"}'
+
+# Matching
+curl http://127.0.0.1:8000/matching/1/
+
+# Ajouter dispo mentoré
+curl -X POST http://127.0.0.1:8000/disponibilites/mentore/1/ -H "Content-Type: application/json" -d '{"jour":"Lundi","heure_debut":"15:00","heure_fin":"17:00"}'
+
+# Ajouter dispo mentor
+curl -X POST http://127.0.0.1:8000/disponibilites/ajouter/ -H "Content-Type: application/json" -d '{"mentor_id":2,"jour":"Lundi","heure_debut":"14:00","heure_fin":"16:00"}'
+
+# Envoyer message
+curl -X POST http://127.0.0.1:8000/messages/envoyer/ -H "Content-Type: application/json" -d '{"match_id":1,"expediteur_id":1,"contenu":"Bonjour"}'
+## Envoyer une photo
+-- methode: POST 
+--URL : /utilisateurs/1/photo/

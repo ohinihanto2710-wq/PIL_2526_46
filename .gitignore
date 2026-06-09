@@ -2,7 +2,7 @@
 __pycache__/
 *.pyc
 *.pyo
-
+*.pyd
 # Base de données
 db.sqlite3
 
@@ -18,3 +18,10 @@ ngrok.exe
 
 # VS Code
 .vscode/
+.idea
+# fichier temporaires
+core/__pycache__/
+core/migrations/
+# django
+media/
+migrations/

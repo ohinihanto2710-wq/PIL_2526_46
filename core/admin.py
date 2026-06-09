@@ -1,10 +1,12 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from .models import Utilisateur, Competence, OffreDemande, Match, Conversation, Message
 
-admin.site.register(Utilisateur, UserAdmin)
+# Register your models here.
+from .models import Utilisateur, Competence, UserCompetence, Match, Message, Disponibilite, Session
+
+admin.site.register(Utilisateur)
 admin.site.register(Competence)
-admin.site.register(OffreDemande)
+admin.site.register(UserCompetence)
 admin.site.register(Match)
-admin.site.register(Conversation)
 admin.site.register(Message)
+admin.site.register(Disponibilite)
+admin.site.register(Session)
