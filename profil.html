@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mon Profil — IFRI_MentorLink</title>
+  <link rel="stylesheet" href="CSS/style.css"/>
+  <link rel="stylesheet" href="CSS/profil.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-brand">
+    <a href="index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;">
+      <span class="brand-icon">M</span>
+      <span class="brand-text">IFRI_<strong>MentorLink</strong></span>
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="matching.html">Trouver un mentor</a></li>
+    <li><a href="discussions.html">Discussions</a></li>
+    <li><a href="profil.html" class="active">Profil</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-ghost" onclick="handleLogout()">Déconnexion</button>
+  </div>
+  <button class="menu-toggle" id="menuToggle"><i class="fa fa-bars"></i></button>
+</nav>
+
+<section class="section profil-section">
+  <div class="container profil-layout">
+
+    <!-- LEFT: Profile Card -->
+    <div class="profil-left">
+      <div class="profil-card">
+        <div class="profil-avatar-wrap">
+          <img id="prof-avatar" src="img/c.jpg" alt="Avatar" class="profil-avatar"/>
+          <label class="avatar-edit-btn" title="Changer la photo">
+            <i class="fa fa-edit"></i>
+            <input type="file" accept="image/*" style="display:none;" onchange="previewAvatar(this)"/>
+          </label>
+        </div>
+        <h2 id="prof-name">Kokou Mensah</h2>
+        <p id="prof-filiere-niveau" class="profil-sub">IA · L3</p>
+        <p id="prof-bio" class="profil-bio">Passionné d'IA et de développement. Prêt à aider et à apprendre.</p>
+        <div class="profil-badges">
+          <span class="badge mentor-badge"><i class="fa fa-star"></i> Mentor</span>
+          <span class="badge">3 sessions</span>
+        </div>
+      </div>
+
+      <div class="profil-card mt-16">
+        <h4 class="card-section-title">Disponibilités</h4>
+        <div class="dispo-pills" id="dispo-pills">
+          <span class="dpill">Soir (semaine)</span>
+          <span class="dpill">Week-end</span>
+        </div>
+      </div>
+
+      <div class="profil-card mt-16">
+        <h4 class="card-section-title">Statistiques</h4>
+        <div class="prof-stats">
+          <div class="ps"><span id="ps-sessions">3</span><small>Sessions</small></div>
+          <div class="ps"><span id="ps-matchs">7</span><small>Matchs</small></div>
+          <div class="ps"><span id="ps-msg">24</span><small>Messages</small></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Edit Form -->
+    <div class="profil-right">
+      <div class="profil-card">
+        <div class="card-header-row">
+          <h3>Mes informations</h3>
+          <button class="btn-ghost small" id="editBtn" onclick="toggleEdit()"><i class="fa fa-edit"></i> Modifier</button>
+        </div>
+
+        <div class="form-msg" id="profMsg" style="display:none;"></div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" id="edit-prenom" value="Kokou" class="form-input" disabled/>
+          </div>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" id="edit-nom" value="Mensah" class="form-input" disabled/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="edit-email" value="kokou@ifri.uac.bj" class="form-input" disabled/>
+        </div>
+        <div class="form-group">
+          <label>Téléphone</label>
+          <input type="tel" id="edit-tel" value="+229 97 00 00 00" class="form-input" disabled/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Filière</label>
+            <select id="edit-filiere" class="form-input" disabled>
+              <option selected>IA</option><option>GL</option><option>SI</option><option>SE&IoT</option><option>IM</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Niveau</label>
+            <select id="edit-niveau" class="form-input" disabled>
+              <option>L1</option><option>L2</option><option selected>L3</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Bio</label>
+          <textarea id="edit-bio" class="form-input" rows="3" disabled>Passionné d'IA et de développement. Prêt à aider et à apprendre.</textarea>
+        </div>
+
+        <div id="save-row" style="display:none;">
+          <button class="btn-primary" onclick="saveProfile()">Enregistrer</button>
+          <button class="btn-ghost" onclick="cancelEdit()">Annuler</button>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="profil-card mt-16">
+        <h3>Compétences & lacunes</h3>
+        <div class="skills-section">
+          <div>
+            <h4 class="skills-label strengths-label">✅ Points forts</h4>
+            <div class="tags-display" id="strengths-display">
+              <span class="badge strength">Python</span>
+              <span class="badge strength">Machine Learning</span>
+              <span class="badge strength">Django</span>
+            </div>
+          </div>
+          <div>
+            <h4 class="skills-label weaknesses-label">⚠️ Points faibles</h4>
+            <div class="tags-display" id="weaknesses-display">
+              <span class="badge weakness">Réseaux</span>
+              <span class="badge weakness">Systèmes embarqués</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MES OFFRES -->
+      <div class="profil-card mt-16">
+        <div class="card-header-row">
+          <h3>Mes offres & demandes</h3>
+          <button class="btn-ghost small" onclick="document.getElementById('offerModal').style.display='flex'">+ Ajouter</button>
+        </div>
+          <div class="offers-list" id="offersList">
+          <div class="post-item">
+            <span class="post-type offre">Offre</span>
+            <div>
+              <p><strong>Python · Machine Learning</strong></p>
+              <p class="post-meta">Soir semaine · En ligne · L1-L2</p>
+            </div>
+            <button class="post-del" title="Supprimer"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER MODAL -->
+  <div class="modal-overlay" id="offerModal" style="display:none;">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('offerModal')"><i class="fa fa-times"></i></button>
+    <h3>Nouvelle offre / demande</h3>
+      <div class="form-msg" id="offerMsg" style="display:none;"></div>
+      <div class="form-group">
+        <label>Type</label>
+        <div class="toggle-group">
+          <button class="toggle-btn active" onclick="setPublishType(this,'offre')" id="pub-type-offre">Offre</button>
+          <button class="toggle-btn" onclick="setPublishType(this,'demande')" id="pub-type-demande">Demande</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Titre</label>
+        <input type="text" id="post-title" class="form-input" placeholder="Ex: Je cherche un mentor en Python..." />
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="post-details" class="form-input" rows="3" placeholder="Décris ton besoin en quelques mots..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Disponibilités</label>
+        <input type="text" id="post-dispo" class="form-input" placeholder="Soir, Week-end…" />
+      </div>
+      <div class="form-group">
+        <label>Format</label>
+        <select id="post-format" class="form-input">
+          <option>Présentiel</option>
+          <option>En ligne</option>
+          <option>Les deux</option>
+        </select>
+      </div>
+      <button class="btn-primary full" onclick="publishOfferOrDemand()">Publier</button>
+    </div>
+  </div>
+
+<script src="app.js"></script>
+</body>
+</html>

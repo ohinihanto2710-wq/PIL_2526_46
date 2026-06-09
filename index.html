@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IFRI_MentorLink</title>
+  <link rel="stylesheet" href="CSS/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="CSS/index.css"/>   
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-brand">
+    <span class="brand-icon">M</span>
+    <span class="brand-text">IFRI_<strong>MentorLink</strong></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Accueil</a></li>
+    <li><a href="matching.html">Trouver un mentor</a></li>
+    <li><a href="discussions.html">Discussions</a></li>
+    <li><a href="profil.html">Profil</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="login.html" class="btn-ghost">Connexion</a>
+    <a href="register.html" class="btn-primary">S'inscrire</a>
+  </div>
+  <button class="menu-toggle" id="menuToggle"><i class="fa fa-bars"></i></button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge"><i class="fa fa-graduation-cap"></i> Plateforme de mentorat — IFRI · UAC</div>
+    <h1 class="hero-title">
+      Deviens un mentor.<br/>
+      <span class="accent">Trouve le tien.</span>
+    </h1
+    >
+    <p class="hero-sub">IFRI_MentorLink met en relation les étudiants de l'IFRI pour du soutien académique et professionnel. Partage tes compétences, surmonte tes lacunes.</p>
+    <div class="hero-cta">
+      <a href="register.html" class="btn-primary large">Rejoindre la communauté</a>
+      <a href="matching.html" class="btn-outline large">Explorer les mentors</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">IA</span><span class="stat-label">Intelligence Artificielle</span></div>
+      <div class="stat-sep">·</div>
+      <div class="stat"><span class="stat-num">GL</span><span class="stat-label">Génie Logiciel</span></div>
+      <div class="stat-sep">·</div>
+      <div class="stat"><span class="stat-num">SI</span><span class="stat-label">Systèmes d'Info</span></div>
+      <div class="stat-sep">·</div>
+      <div class="stat"><span class="stat-num">SEIOT</span><span class="stat-label">Systèmes Embarqués</span></div>
+    </div>
+  </div>
+  <div class="hero-card-float">
+    <div class="float-card mentor-card">
+      <img src="img/a.jpg" alt="avatar"/>
+      <div>
+        <p class="fc-name">Ayodélé K.</p>
+        <p class="fc-role">Mentor · IA · L3</p>
+        <div class="fc-tags"><span>Python</span><span>ML</span></div>
+      </div>
+      <span class="fc-score">98%</span>
+    </div>
+    <div class="float-card msg-card">
+      <span class="msg-icon"><i class="fa fa-comment"></i></span>
+      <p>Nouveau message de <strong>Razak</strong></p>
+      <span class="msg-time">il y a 2 min</span>
+    </div>
+    <div class="float-card match-card">
+      <span class="match-icon"><i class="fa fa-bolt"></i></span>
+      <p><strong>3 matchs</strong> trouvés pour toi !</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how">
+  <div class="container">
+    <div class="section-label">Comment ça marche</div>
+    <h3 class="section-title">Simple. Efficace. Collaboratif.</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-icon"><i class="fa fa-user"></i></div>
+        <h3>Crée ton profil</h3>
+        <p>Renseigne tes compétences maîtrisées, tes lacunes, ta filière et tes disponibilités.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-icon"><i class="fa fa-search"></i></div>
+        <h3>Trouve un match</h3>
+        <p>Notre algorithme te propose les mentors ou mentorés les plus compatibles selon ton profil.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-icon"><i class="fa fa-comment"></i></div>
+        <h3>Échange et progresse</h3>
+        <p>Organise tes sessions via la messagerie intégrée et suis ta progression.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section features">
+  <div class="container">
+    <div class="section-label">Fonctionnalités</div>
+    <h3 class="section-title">Tout ce dont tu as besoin</h3>
+    <div class="features-grid">
+      <div class="feature-card fc-big">
+        <div class="feature-icon"><i class="fa fa-bullseye"></i></div>
+        <h3>Matching intelligent</h3>
+        <p>Un algorithme analyse la compatibilité des compétences, la proximité des filières et les horaires pour te proposer les meilleurs partenaires.</p>
+        <a href="matching.html" class="feat-link">Explorer →</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa fa-comment"></i></div>
+        <h3>Messagerie intégrée</h3>
+        <p>Discute en temps réel avec tes mentors et mentorés. Historique conservé.</p>
+        <a href="discussions.html" class="feat-link">Ouvrir →</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa fa-bullhorn"></i></div>
+        <h3>Offres & Demandes</h3>
+        <p>Publie une offre de mentorat ou exprime un besoin ciblé sur une matière.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa fa-bell"></i></div>
+        <h3>Notifications temps réel</h3>
+        <p>Reçois des alertes dès qu'un message arrive ou qu'un match est trouvé.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Sécurité des données</h3>
+        <p>Mots de passe hashés, données protégées, accès restreint aux informations nécessaires.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials">
+  <div class="container">
+    <div class="section-label">Témoignages</div>
+    <h3 class="section-title">Ils ont évolué ensemble</h3>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p>"Grâce à MentorLink j'ai pu combler mes lacunes en SQL en moins d'une semaine. Mon mentor était dans la même filière, c'était parfait."</p>
+        <div class="testi-author">
+          <img src="img/d.jpg" alt=""/>
+          <div><strong>Fatima A.</strong><span>Étudiante GL · L2</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p>"J'ai commencé à mentorer des L1 en Python. Ça m'a aidé à consolider mes propres connaissances tout en aidant les autres."</p>
+        <div class="testi-author">
+          <img src="img/c.jpg" alt=""/>
+          <div><strong>Kokou M.</strong><span>Mentor IA · L3</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <p>"L'interface est claire et le matching est vraiment pertinent. En 5 minutes j'avais trouvé quelqu'un disponible aux mêmes horaires que moi."</p>
+        <div class="testi-author">
+          <img src="img/b.jpg" alt=""/>
+          <div><strong>Rachida B.</strong><span>Étudiante SI · L2</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container cta-inner">
+    <h2>Par des étudiants de l'IFRI,<br/>pour des étudiants de l'IFRI.</h2>
+    <a href="register.html" class="btn-primary large">Commencer maintenant</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-icon small">M</span>
+      <span>IFRI_MentorLink</span>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="matching.html">Mentors</a>
+      <a href="discussions.html">Messages</a>
+      <a href="profil.html">Profil</a>
+    </div>
+    <p class="footer-copy">© 2026 IFRI · Université d'Abomey-Calavi</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
