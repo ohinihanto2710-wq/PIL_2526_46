@@ -1,7 +1,7 @@
 // ==============================================================================
 // ⚙️ CONFIGURATION GLOBALE DE L'API REST
 // ==============================================================================
-const API_URL = "https://onrender.com";
+const API_URL = "https://onrender.com"; 
 
 // Fonction utilitaire pour récupérer les en-têtes avec le token de sécurité
 function getHeaders() {
@@ -29,11 +29,13 @@ async function inscription(event) {
     }
 
     try {
-        const response = await fetch(`${API_URL}/api/auth/register/`, {
+        // 🚨 On écrit l'adresse en entier ici pour forcer le navigateur à l'utiliser !
+        const response = await fetch("https://onrender.com", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nom, email, password, role })
         });
+
 
         const data = await response.json();
 
@@ -63,12 +65,15 @@ async function connexion(event) {
         return;
     }
 
+    // Remplace le début du bloc try de la fonction connexion par ces lignes :
     try {
-        const response = await fetch(`${API_URL}/api/auth/login/`, {
+        // 🚨 On force aussi l'adresse pour la connexion !
+        const response = await fetch("https://onrender.com", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })
         });
+
 
         const data = await response.json();
 
