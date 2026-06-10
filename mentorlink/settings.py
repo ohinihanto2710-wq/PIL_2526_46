@@ -89,11 +89,14 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Modifie le bloc STORAGES tout en bas de ton settings.py :
 STORAGES = {
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        # 🚨 On repasse sur le stockage standard pour forcer la mise à jour des scripts
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
+
 
 AUTH_USER_MODEL = 'core.Utilisateur'
 
