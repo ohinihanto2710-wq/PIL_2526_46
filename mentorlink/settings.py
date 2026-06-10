@@ -120,3 +120,23 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 AUTH_USER_MODEL = 'core.Utilisateur'
+
+INSTALLED_APPS = [
+    ...
+    'corsheaders',
+]
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # En PREMIER
+    ...
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5500",  # Live Server VS Code
+    "http://localhost:5500",
+]
+
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+]
