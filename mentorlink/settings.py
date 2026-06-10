@@ -82,12 +82,17 @@ USE_TZ = True
 # ==============================================================================
 # 🎨 CONFIGURATION DES FICHIERS STATIQUES (CSS / IMAGES)
 # ==============================================================================
+# ==============================================================================
+# 🎨 CONFIGURATION DES FICHIERS STATIQUES (CSS / JS) POUR PRODUCTION
+# ==============================================================================
 STATIC_URL = '/static/'
 
+# On indique à Django de collecter les fichiers depuis ton dossier static
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+# Le dossier où Django va compiler les fichiers sur Render (Ne pas toucher)
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STORAGES = {
@@ -95,6 +100,8 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+
 
 AUTH_USER_MODEL = 'core.Utilisateur'
 
