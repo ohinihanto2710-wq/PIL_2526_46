@@ -33,6 +33,6 @@ Application web de mise en relation entre mentors et mentorés pour l'IFRI.
 - KPADONOU Horeb Immaculée La joie
 - AMEHO Fifamè Grâce
 - AZONHOUMON Adrien
-- Gloria
+- DAMADO Gloria
 - OKE Sourou Julie Hilary
 - HANTO Jordy Mayel
