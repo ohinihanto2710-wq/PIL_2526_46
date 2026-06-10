@@ -1,0 +1,242 @@
+/*discussions.css — IFRI_MentorLink
+   Page     : discussions.html */
+
+/*Layout messagerie*/
+.messaging-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  height: calc(100vh - 64px);
+}
+
+/*Liste des conversations*/
+.conv-list {
+  border-right: 1.5px solid var(--border);
+  display: flex; flex-direction: column;
+  background: var(--bg2); overflow: hidden;
+}
+
+.conv-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 20px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.conv-header h3 { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--text); }
+
+.notif-badge {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--accent); color: #fff;
+  font-size: 12px; font-weight: 700;
+  display: grid; place-items: center;
+}
+
+.conv-search { 
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border); }
+
+.conv-items { 
+  overflow-y: auto; 
+  flex: 1;
+ }
+.conv-items::-webkit-scrollbar {
+   width: 4px;
+   }
+.conv-items::-webkit-scrollbar-thumb { 
+  background: var(--border2); 
+  border-radius: 4px;
+ }
+
+.conv-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+
+.conv-item:hover  { 
+  background: var(--accent-soft);
+ }
+.conv-item.active { 
+  background: var(--accent-soft); border-left: 3px solid var(--accent);
+ }
+
+.conv-avatar { 
+  position: relative; flex-shrink: 0;
+ }
+.conv-avatar img {
+   width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+   }
+
+.online-indicator {
+  position: absolute; bottom: 2px; right: 2px;
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 2px solid var(--bg2);
+}
+
+.online-indicator.online  { 
+  background: var(--green);
+ }
+.online-indicator.offline { 
+  background: var(--text3);
+ }
+
+.conv-meta { flex: 1; min-width: 0; }
+.conv-meta-top {
+   display: flex;
+   justify-content: space-between;
+   align-items: baseline;
+ }
+.conv-name    { 
+  font-weight: 700; 
+  font-size: 14px; 
+  color: var(--text); 
+}
+.conv-time    { 
+  font-size: 11px;
+   color: var(--text3); }
+.conv-preview { 
+  font-size: 12px;
+  color: var(--text3);
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.unread-dot {
+   width: 8px; 
+   height: 8px; 
+   border-radius: 50%; 
+   background: var(--accent); 
+   flex-shrink: 0;
+ }
+
+/* Zone de chat*/
+.chat-area { display: flex; flex-direction: column; overflow: hidden; background: var(--bg);
+ }
+
+.chat-empty {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px; color: var(--text3);
+}
+
+.ce-icon { font-size: 48px; }
+.chat-empty h3 { font-family: var(--font-head); font-size: 20px; font-weight: 700; color: var(--text2); }
+.chat-empty p  { font-size: 14px; }
+
+.chat-window { display: flex; flex-direction: column; height: 100%; }
+
+/* En-tête du chat */
+.chat-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+
+.back-btn {
+  display: none; font-size: 20px; color: var(--text2);
+  padding: 4px 10px; border-radius: var(--radius-sm);
+  transition: color var(--transition);
+}
+.back-btn:hover { color: var(--accent); }
+
+.chat-avatar { 
+  width: 40px; height: 40px; border-radius: 50%; object-fit: cover; 
+}
+.chat-name  { 
+  font-weight: 700; font-size: 15px; color: var(--text); 
+}
+.chat-role  {
+  
+  font-size: 12px; color: var(--text2); 
+}
+.chat-header-actions {
+   margin-left: auto;
+ }
+
+.online-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--green); display: inline-block;
+  box-shadow: 0 0 8px rgba(13,127,95,.4);
+}
+
+/* Messages */
+.chat-messages {
+  flex: 1; overflow-y: auto;
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+.msg-bubble { display: flex; flex-direction: column; max-width: 68%; }
+.msg-bubble.sent  { align-self: flex-end;   align-items: flex-end; }
+.msg-bubble.recv  { align-self: flex-start; align-items: flex-start; }
+
+.msg-text {
+  padding: 11px 16px; border-radius: 16px;
+  font-size: 14px; line-height: 1.55; word-break: break-word;
+}
+
+.msg-bubble.sent .msg-text {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; border-bottom-right-radius: 4px;
+}
+
+.msg-bubble.recv .msg-text {
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  color: var(--text); border-bottom-left-radius: 4px;
+}
+
+.msg-time-label { font-size: 10px; color: var(--text3); margin-top: 4px; padding: 0 4px; }
+
+.msg-date-sep {
+  text-align: center; font-size: 11px; color: var(--text3);
+  display: flex; align-items: center; gap: 12px;
+}
+
+.msg-date-sep::before, .msg-date-sep::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+/* Zone de saisie */
+.chat-input-area {
+  display: flex; gap: 10px; align-items: center;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  background: var(--bg2);
+}
+
+.chat-input-area .form-input { flex: 1; }
+
+.send-btn {
+  width: 42px; height: 42px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; font-size: 16px;
+  display: grid; place-items: center; flex-shrink: 0;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.send-btn:hover { transform: scale(1.08); opacity: .9; }
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .messaging-layout { grid-template-columns: 1fr; }
+
+  .conv-list {
+    position: fixed;
+    left: 0; top: 64px; bottom: 0;
+    width: 100%; z-index: 50;
+    transform: translateX(0);
+    transition: transform var(--transition);
+  }
+
+  .conv-list.hidden { transform: translateX(-100%); }
+
+  .chat-area { height: calc(100vh - 64px); }
+  .back-btn  { display: flex; }
+}

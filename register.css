@@ -1,0 +1,163 @@
+/* auth.css — IFRI_MentorLink
+   Pages    : register.html */
+
+.auth-page { background: var(--bg2); }
+
+.auth-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* ── Panneau gauche */
+.auth-left {
+  background: linear-gradient(160deg, var(--accent) 0%, var(--accent2) 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-head); font-weight: 700; font-size: 18px;
+  color: #fff;
+  margin-bottom: auto;
+}
+
+.auth-brand .brand-icon { background: rgba(255,255,255,.2); box-shadow: none; }
+
+.auth-visual { display: flex; align-items: center; justify-content: center; flex: 1; }
+
+.av-card {
+  position: relative;
+  width: 100%; max-width: 340px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 20px;
+  padding: 32px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,.15);
+  backdrop-filter: blur(10px);
+}
+
+.av-orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(50px); opacity: .3; pointer-events: none;
+}
+
+.av-o1 { width: 200px; height: 200px; top: -80px; right: -40px; background: #fff; }
+.av-o2 { width: 160px; height: 160px; bottom: -60px; left: -30px; background: var(--accent-soft); }
+
+/* Citation (login) */
+.av-quote { position: relative; z-index: 1; margin-bottom: 24px; }
+.av-q-icon { font-size: 20px; color: rgba(255,255,255,.8); display: block; margin-bottom: 8px; }
+.av-quote p { font-family: var(--font-head); font-size: 18px; font-weight: 600; line-height: 1.4; color: #fff; }
+
+.av-stats-row { display: flex; gap: 12px; position: relative; z-index: 1; }
+
+.av-stat {
+  flex: 1;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 10px;
+  padding: 10px 8px; text-align: center;
+}
+
+.av-stat span { display: block; font-family: var(--font-head); font-weight: 800; font-size: 16px; color: #fff; }
+.av-stat small { font-size: 10px; color: rgba(255,255,255,.7); }
+
+/* Étapes preview (register) */
+.av-steps-preview {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-bottom: 24px; position: relative; z-index: 1;
+}
+
+.avsp {
+  padding: 12px 16px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.1);
+  font-size: 14px; font-weight: 500;
+  color: rgba(255,255,255,.7);
+  transition: all var(--transition);
+}
+
+.avsp.active { background: rgba(255,255,255,.25); border-color: rgba(255,255,255,.5); color: #fff; }
+
+.av-note { font-size: 13px; color: rgba(255,255,255,.65); text-align: center; position: relative; z-index: 1; }
+
+/* ── Panneau droit ──────────────────────────────────────────── */
+.auth-right {
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px;
+  background: var(--bg);
+}
+
+.auth-form-wrap {
+  width: 100%; max-width: 400px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+
+.auth-form-wrap.wide { max-width: 480px; }
+
+.auth-title { font-family: var(--font-head); font-size: 30px; font-weight: 800; letter-spacing: -.5px; color: var(--text); }
+.auth-sub { font-size: 15px; color: var(--text2); margin-top: -10px; }
+.auth-switch { font-size: 14px; color: var(--text2); text-align: center; }
+.auth-switch a { color: var(--accent); font-weight: 700; }
+
+/* ── Étapes d'inscription*/
+.reg-steps { display: flex; align-items: center; gap: 0; margin-bottom: 8px; }
+
+.reg-step {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 2px solid var(--border2);
+  display: grid; place-items: center;
+  font-size: 13px; font-weight: 700;
+  color: var(--text3); flex-shrink: 0;
+  transition: all var(--transition);
+}
+
+.reg-step.active { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.reg-step.done   { border-color: var(--green); background: var(--green); color: #fff; }
+
+.reg-step-line { flex: 1; height: 2px; background: var(--border); }
+
+.reg-panel { display: none; flex-direction: column; gap: 16px; }
+.reg-panel.active { display: flex; }
+
+.step-label { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--text2); margin-bottom: 4px; }
+
+.btn-row { display: flex; gap: 12px; }
+
+.badges-input {
+  min-height: 48px; padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--bg3);
+  display: flex; flex-wrap: wrap; gap: 6px;
+  align-items: center; cursor: text;
+  transition: border-color var(--transition);
+}
+.badges-input:focus-within { border-color: var(--accent2); box-shadow: 0 0 0 3px var(--accent-glow); }
+
+.badges-input input {
+  flex: 1; min-width: 80px;
+  background: none; border: none; outline: none;
+  color: var(--text); font-size: 14px;
+}
+
+.badges-list { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.badge.strength { background: #d1fae5; color: var(--green); border: 1px solid #a7f3d0; }
+.badge.weakness { background: #fee2e2; color: var(--red);   border: 1px solid #fca5a5; }
+.badge .badge-x { cursor: pointer; opacity: .6; font-size: 11px; transition: opacity var(--transition); }
+.badge .badge-x:hover { opacity: 1; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .auth-split { grid-template-columns: 1fr; }
+  .auth-left  { display: none; }
+  .auth-right { padding: 32px 24px; }
+}
