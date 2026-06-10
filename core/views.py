@@ -6,7 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from .models import Utilisateur, OffreDemande, Conversation, Message
 from .serializers import *
-
+from django.shortcuts import render
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def register(request):
@@ -92,3 +92,11 @@ from django.shortcuts import render
 # Cette fonction va lire et afficher le fichier login.html
 def page_accueil_redirection(request):
     return render(request, 'login.html')
+
+# Affiche la page de connexion
+def page_connexion(request):
+    return render(request, 'login.html')
+
+# Affiche la page d'inscription
+def page_inscription(request):
+    return render(request, 'register.html')

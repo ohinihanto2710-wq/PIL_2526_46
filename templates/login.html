@@ -7,15 +7,15 @@
   <title>Connexion — IFRI_MentorLink</title>
   <link rel="stylesheet" href="{% static 'style.css' %}"/>
   <link rel="stylesheet" href="{% static 'Login.css' %}"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cloudflare.com"/>
+  <link href="https://googleapis.com" rel="stylesheet"/>
 </head>
 <body class="auth-page">
 
 <div class="auth-split">
   <!-- Left Panel -->
   <div class="auth-left">
-    <a href="index.html" class="auth-brand">
+    <a href="/" class="auth-brand">
       <span class="brand-icon">M</span>
       <span>IFRI_<strong>MentorLink</strong></span>
     </a>
@@ -39,28 +39,29 @@
   <!-- Right Panel -->
   <div class="auth-right">
     <div class="auth-form-wrap">
-      <h2 class="auth-title"></h2>
+      <h2 class="auth-title">Connexion</h2>
       <p class="auth-sub">Connecte-toi pour accéder à ta communauté de mentors.</p>
 
       <div class="form-msg" id="loginMsg" style="display:none;"></div>
 
       <div class="form-group">
         <label>Email ou téléphone</label>
-        <input type="text" id="loginId" placeholder="ex: kokou@ifri.uac.bj" class="form-input"/>
+        <input type="text" id="email" placeholder="ex: kokou@ifri.uac.bj" class="form-input"/>
       </div>
       <div class="form-group">
         <label>Mot de passe</label>
         <div class="input-eye">
-          <input type="password" id="loginPwd" placeholder="••••••••" class="form-input"/>
-          <button type="button" class="eye-btn" onclick="togglePwd('loginPwd', this)"><i class="fa fa-eye"></i></button>
+          <input type="password" id="password" placeholder="••••••••" class="form-input"/>
         </div>
       </div>
       <div class="form-row-between">
         <label class="checkbox-label"><input type="checkbox"/> Se souvenir de moi</label>
         <a href="#" class="link-small">Mot de passe oublié ?</a>
       </div>
-      <button class="btn-primary full" onclick="handleLogin()">Se connecter</button>
-      <p class="auth-switch">Pas encore de compte ? <a href="register.html">S'inscrire</a></p>
+      <!-- 🚨 Utilisation de la fonction connexion(event) liée à app.js -->
+      <button class="btn-primary full" onclick="connexion(event)">Se connecter</button>
+      <!-- 🚨 Redirection sémantique corrigée pour Render -->
+      <p class="auth-switch">Pas encore de compte ? <a href="/register/">S'inscrire</a></p>
     </div>
   </div>
 </div>

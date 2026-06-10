@@ -511,6 +511,7 @@ async function inscription(event) {
 
     try {
         const response = await fetch(`${API_URL}/api/auth/register/`, {
+
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nom, email, password, role })
@@ -539,6 +540,7 @@ async function connexion(event) {
 
     try {
         const response = await fetch(`${API_URL}/api/auth/login/`, {
+
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })
