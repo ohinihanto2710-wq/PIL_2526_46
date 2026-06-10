@@ -6,10 +6,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-=^1ft(%38m-*=2na1z3u-0rx$3x2lhs(lpj&txo+cn$pho1zlp')
 
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+# 🚨 FORCE LE MODE DEBUG SUR TRUE POUR RENDRE LE SERVEUR FLEXIBLE EN PRODUCTION
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://backspace-decathlon-unroasted.ngrok-free.dev']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://backspace-decathlon-unroasted.ngrok-free.dev',
+    'https://mentorlink-ifri.onrender.com'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -75,13 +80,7 @@ USE_I18N = True
 USE_TZ = True
 
 # ==============================================================================
-# 🎨 CONFIGURATION FINALE DES FICHIERS STATIQUES (CSS / IMAGES)
-# ==============================================================================
-# ==============================================================================
-# 🎨 CONFIGURATION PRODUCTIONS DES STYLES (CORRIGÉE)
-# ==============================================================================
-# ==============================================================================
-# 🎨 CONFIGURATION DES TEMPLATES STATIQUES POUR DEPLOIEMENT
+# 🎨 CONFIGURATION DES FICHIERS STATIQUES (CSS / IMAGES)
 # ==============================================================================
 STATIC_URL = '/static/'
 
@@ -91,19 +90,18 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Force Django à utiliser l'application de gestion des fichiers en production
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
-
 AUTH_USER_MODEL = 'core.Utilisateur'
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",
     "http://localhost:5500",
+    "https://mentorlink-ifri.onrender.com"
 ]
 
 REST_FRAMEWORK = {
