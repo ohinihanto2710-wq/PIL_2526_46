@@ -32,5 +32,7 @@ Application web de mise en relation entre mentors et mentorés pour l'IFRI.
 - ATHINDEHOU Oluwa-Tobi Amos Fréjus
 - KPADONOU Horeb Immaculée La joie
 - AMEHO Fifamè Grâce
-- Membre 4
-- Membre 5
+- AZONHOUMON Adrien
+- Gloria
+- OKE Sourou Julie Hilary
+- HANTO Jordy Mayel
