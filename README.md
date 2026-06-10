@@ -11,7 +11,7 @@ Application web de mise en relation entre mentors et mentorés pour l'IFRI.
 - Réinitialisation de mot de passe par email
 
 ## Technologies
-- Backend : Python / Flask
+- Backend : Python / Django
 - Base de données : PostgreSQL
 - Temps réel : SocketIO
 - Authentification : JWT
