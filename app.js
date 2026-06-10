@@ -575,8 +575,7 @@ function deconnexion() {
     alert("Vous avez été déconnecté.");
     window.location.href = "connexion.html";
 }
-
-// Charge les infos sur la page profil.html (Gère le rôle 'les_deux')
+// Remplace l'ancienne fonction chargerProfil dans ton app.js par celle-ci :
 async function chargerProfil() {
     try {
         const response = await fetch(`${API_URL}/api/profil/`, {
@@ -586,19 +585,26 @@ async function chargerProfil() {
         const user = await response.json();
 
         if (response.ok) {
-            // Remplir les éléments HTML s'ils existent dans la page
-            if (document.getElementById("profil-nom")) document.getElementById("profil-nom").innerText = user.nom;
-            if (document.getElementById("profil-email")) document.getElementById("profil-email").innerText = user.email;
+            // 🚨 Correction des IDs pour correspondre exactement à ton profil.html !
+            if (document.getElementById("prof-name")) {
+                document.getElementById("prof-name").innerText = user.nom;
+            }
+            if (document.getElementById("edit-nom")) {
+                document.getElementById("edit-nom").value = user.nom;
+            }
+            if (document.getElementById("edit-email")) {
+                document.getElementById("edit-email").value = user.email;
+            }
             
-            // Affichage personnalisé selon le rôle (mentor, mentore, ou les_deux)
-            const zoneRole = document.getElementById("profil-role");
-            if (zoneRole) {
+            // Gère l'affichage du rôle ou badge s'il existe
+            const zoneSub = document.getElementById("prof-filiere-niveau");
+            if (zoneSub && user.role) {
                 if (user.role === "les_deux") {
-                    zoneRole.innerText = "Mentor & Mentoré";
+                    zoneSub.innerText = "Mentor & Mentoré";
                 } else if (user.role === "mentor") {
-                    zoneRole.innerText = "Mentor";
+                    zoneSub.innerText = "Mentor (Guide)";
                 } else {
-                    zoneRole.innerText = "Mentoré";
+                    zoneSub.innerText = "Mentoré (Élève)";
                 }
             }
         }
@@ -606,6 +612,14 @@ async function chargerProfil() {
         console.error("Erreur lors du chargement du profil :", error);
     }
 }
+
+// 🚨 Ajoute cette fonction pour gérer le bouton de déconnexion d'Adrien
+function handleLogout() {
+    localStorage.removeItem("token");
+    alert("Vous avez été déconnecté.");
+    window.location.href = "login.html"; // Redirige vers la page d'Adrien
+}
+
 
 // ==========================================
 // 📅 3. GESTION DES DISPONIBILITÉS (MIGRATION)

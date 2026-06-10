@@ -1,0 +1,168 @@
+/* profil.css — IFRI_MentorLink
+   Page     : profil.html */
+
+.profil-section { padding: 48px 0 80px; }
+
+/* Layout */
+.profil-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.profil-left  { display: flex; flex-direction: column; gap: 0; }
+.profil-right { display: flex; flex-direction: column; gap: 0; }
+
+/* Carte de base  */
+.profil-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+/*  Avatar  */
+.profil-avatar-wrap { position: relative; width: fit-content; margin: 0 auto 16px; }
+
+.profil-avatar {
+  width: 100px; height: 100px;
+  border-radius: 50%; object-fit: cover;
+  border: 3px solid var(--accent2);
+}
+
+.avatar-edit-btn {
+  position: absolute; bottom: 2px; right: 2px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--accent); color: #fff;
+  display: grid; place-items: center; font-size: 13px;
+  cursor: pointer; transition: transform var(--transition);
+}
+
+.avatar-edit-btn:hover { 
+  transform: scale(1.1); 
+}
+
+/* ── Infos du profil */
+.profil-card h2 {
+  font-family: var(--font-head); font-size: 22px;
+  font-weight: 800; text-align: center;
+  margin-bottom: 4px; color: var(--text);
+}
+
+.profil-sub  { 
+  text-align: center; 
+  font-size: 14px; 
+  color: var(--text2); 
+  margin-bottom: 8px; 
+}
+.profil-bio  { 
+  text-align: center; 
+  font-size: 13px; 
+  color: var(--text3); 
+  line-height: 1.5; 
+  margin-bottom: 14px;
+ }
+
+.profil-badges { 
+  display: flex; 
+  justify-content: center; 
+  gap: 8px; 
+  flex-wrap: wrap; }
+
+.badge {
+  padding: 4px 12px; border-radius: 999px;
+  font-size: 12px; font-weight: 600;
+  background: var(--bg2); border: 1.5px solid var(--border2);
+  color: var(--text2);
+}
+
+.mentor-badge { background: var(--accent-soft); border-color: var(--accent2); color: var(--accent); }
+
+/* ── Disponibilités */
+.card-section-title { font-size: 13px; font-weight: 700; color: var(--text2); margin-bottom: 12px; }
+
+.dispo-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.dpill {
+  padding: 5px 12px; border-radius: 999px;
+  background: var(--accent-soft); border: 1px solid var(--border2);
+  font-size: 12px; color: var(--accent); font-weight: 600;
+}
+
+/* ── Statistiques  */
+.prof-stats { display: flex; gap: 12px; }
+
+.ps { flex: 1; text-align: center; }
+.ps span  { display: block; font-family: var(--font-head); font-weight: 800; font-size: 22px; color: var(--accent); }
+.ps small { font-size: 11px; color: var(--text3); }
+
+/* ── En-tête des cartes droites */
+.card-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.card-header-row h3 { font-family: var(--font-head); font-size: 18px; font-weight: 700; color: var(--text); }
+
+#save-row { display: flex; gap: 10px; margin-top: 8px; }
+
+/* ── Compétences & lacunes  */
+.skills-section { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.skills-label { font-size: 13px; font-weight: 700; margin-bottom: 10px; }
+.strengths-label { color: var(--green); }
+.weaknesses-label { color: var(--red); }
+
+.tags-display { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.badge { display: inline-flex; 
+  align-items: center; 
+  gap: 6px; 
+  padding: 4px 10px; 
+  border-radius: 999px; 
+  font-size: 12px; 
+  font-weight: 600; 
+}
+
+.badge.strength { 
+  background: #d1fae5; 
+  color: var(--green); 
+  border: 1px solid #a7f3d0; }
+.badge.weakness {
+   background: #fee2e2; 
+   color: var(--red);   
+   border: 1px solid #fca5a5; }
+
+/* ── Offres & demandes */
+.offers-list { display: flex; flex-direction: column; gap: 10px; }
+
+.post-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: var(--radius-sm);
+  background: var(--bg3); border: 1.5px solid var(--border);
+}
+
+.post-type { padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.post-type.offre   { background: var(--accent-soft); color: var(--accent); }
+.post-type.demande { background: #fef3c7; color: var(--amber); }
+
+.post-item > div { flex: 1; }
+.post-item p    { font-size: 13px; color: var(--text); }
+.post-meta      { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+.post-del {
+  color: var(--text3); font-size: 13px;
+  padding: 4px 8px; border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+}
+
+.post-del:hover { color: var(--red); background: #fee2e2; }
+
+/* RESPONSIVE*/
+@media (max-width: 1024px) {
+  .profil-layout { grid-template-columns: 260px 1fr; }
+}
+
+@media (max-width: 768px) {
+  .profil-layout { grid-template-columns: 1fr; }
+  .profil-left { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+  .profil-card { flex: 1; min-width: 240px; }
+  .skills-section { grid-template-columns: 1fr; }
+}

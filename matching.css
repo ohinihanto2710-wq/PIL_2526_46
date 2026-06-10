@@ -1,0 +1,108 @@
+/* matching.css — IFRI_MentorLink
+   Page     : matching.html*/
+
+/* ── En-tête de page  */
+.page-hero { padding: 56px 0 40px; border-bottom: 1.5px solid var(--border); }
+.page-hero.small-hero { background: var(--bg2); }
+
+.page-hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(25px, 5vw, 40px);
+  font-weight: 800; letter-spacing: -1px;
+  margin-bottom: 12px; color: var(--text);
+}
+
+.page-hero p { font-size: 16px; color: var(--text2); max-width: 560px; }
+
+/* ── Layout principal */
+.matching-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ── Panneau filtres */
+.filters-panel {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 20px;
+  position: sticky; top: 80px;
+}
+
+.filter-title { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--text); }
+
+.filter-group { display: flex; flex-direction: column; gap: 8px; }
+.filter-group > label { font-size: 13px; font-weight: 600; color: var(--text2); }
+
+/* ── Zone résultats ─────────────────────────────────────────── */
+.results-area { display: flex; flex-direction: column; gap: 20px; }
+
+.results-header {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+
+#results-count { font-size: 14px; color: var(--text2); }
+
+.sort-row { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text2); }
+.small-select { width: auto; padding: 7px 12px; font-size: 13px; }
+
+.mentor-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* ── Carte mentor ───────────────────────────────────────────── */
+.mentor-card-item {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.mentor-card-item:hover { border-color: var(--accent2); transform: translateY(-3px); box-shadow: var(--shadow); }
+
+.mc-header { display: flex; align-items: center; gap: 12px; }
+.mc-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+.mc-info h4 { font-weight: 700; font-size: 15px; color: var(--text); }
+.mc-info p  { font-size: 12px; color: var(--text2); }
+.mc-score { margin-left: auto; font-family: var(--font-head); font-weight: 800; font-size: 20px; color: var(--green); }
+
+.mc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.mc-tags span {
+  padding: 3px 10px; border-radius: 999px;
+  font-size: 11px; font-weight: 600;
+  background: var(--accent-soft); color: var(--accent);
+}
+
+.mc-dispo { font-size: 12px; color: var(--text3); display: flex; gap: 6px; flex-wrap: wrap; }
+.mc-dispo span { background: var(--bg2); border: 1px solid var(--border); padding: 2px 8px; border-radius: 999px; }
+
+.mc-actions { display: flex; gap: 8px; margin-top: 4px; }
+.mc-actions .btn-primary { flex: 1; padding: 9px 12px; font-size: 13px; }
+.mc-actions .btn-ghost   { flex: 1; padding: 9px 12px; font-size: 13px; }
+
+/* ── Bouton flottant (FAB) ──────────────────────────────────── */
+.fab-area { position: fixed; bottom: 28px; right: 28px; z-index: 50; }
+
+.fab {
+  padding: 14px 24px; border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; font-weight: 700; font-size: 15px;
+  box-shadow: 0 4px 20px rgba(10,73,146,.3);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.fab:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 6px 28px rgba(10,73,146,.4); }
+
+/*RESPONSIVE*/
+@media (max-width: 860px) {
+  .matching-layout { grid-template-columns: 1fr; }
+  .filters-panel { position: static; }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Discussions — IFRI_MentorLink</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="discussions.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-brand">
+    <a href="index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;">
+      <span class="brand-icon">M</span>
+      <span class="brand-text">IFRI_<strong>MentorLink</strong></span>
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="matching.html">Trouver un mentor</a></li>
+    <li><a href="discussions.html" class="active">Discussions</a></li>
+    <li><a href="profil.html">Profil</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="login.html" class="btn-ghost">Connexion</a>
+  </div>
+  <button class="menu-toggle" id="menuToggle"><i class="fa fa-bars"></i></button>
+</nav>
+
+<div class="messaging-layout">
+
+  <!-- CONVERSATIONS LIST -->
+  <aside class="conv-list" id="convList">
+    <div class="conv-header">
+      <h3>Conversations</h3>
+      <span class="notif-badge" id="totalUnread">2</span>
+    </div>
+    <div class="conv-search">
+      <input type="text" placeholder="Rechercher…" class="form-input" oninput="filterConvs(this.value)"/>
+    </div>
+    <div class="conv-items" id="convItems">
+      <!-- Populated by JS -->
+    </div>
+  </aside>
+
+  <!-- CHAT AREA -->
+  <main class="chat-area" id="chatArea">
+    <div class="chat-empty" id="chatEmpty">
+      <div class="ce-icon"><i class="fa fa-comment"></i></div>
+      <h3>Sélectionne une conversation</h3>
+      <p>Choisis une discussion dans la liste à gauche.</p>
+    </div>
+
+    <div class="chat-window" id="chatWindow" style="display:none;">
+      <div class="chat-header" id="chatHeader">
+        <button class="back-btn" onclick="backToList()">←</button>
+        <img id="chat-avatar" src="" alt="" class="chat-avatar"/>
+        <div>
+          <p id="chat-name" class="chat-name"></p>
+          <p id="chat-role" class="chat-role"></p>
+        </div>
+        <div class="chat-header-actions">
+          <span class="online-dot" id="onlineDot"></span>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <!-- Messages populated by JS -->
+      </div>
+
+      <div class="chat-input-area">
+        <input type="text" id="msgInput" class="form-input" placeholder="Écrire un message…" onkeydown="if(event.key==='Enter') sendMessage()"/>
+        <button class="send-btn" onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
