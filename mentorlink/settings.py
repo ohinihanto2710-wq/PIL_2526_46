@@ -108,14 +108,19 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5500",
     "https://onrender.com",
 ]
-
-CORS_ALLOW_ALL_ORIGINS = True
+# ==============================================================================
+# 🔐 SÉCURITÉ PRODUCTIONS : CORS & CSRF POUR RENDER
+# ==============================================================================
+CORS_ALLOW_ALL_ORIGINS = True  # Autorise le JavaScript en ligne à parler au Backend
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
     "https://onrender.com",
     "https://ngrok-free.dev",
 ]
+
+ALLOWED_HOSTS = ['*']
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
