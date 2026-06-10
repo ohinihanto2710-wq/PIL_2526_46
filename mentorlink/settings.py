@@ -77,11 +77,14 @@ USE_TZ = True
 # ==============================================================================
 # 🎨 CONFIGURATION FINALE DES FICHIERS STATIQUES (CSS / IMAGES)
 # ==============================================================================
+# ==============================================================================
+# 🎨 CONFIGURATION PRODUCTIONS DES STYLES (CORRIGÉE)
+# ==============================================================================
 STATIC_URL = 'static/'
 
-# 🚨 Cette ligne dit à Django de chercher les CSS à la racine du projet
+# Indique à Django de chercher vos CSS dans le nouveau dossier static
 STATICFILES_DIRS = [
-    BASE_DIR,
+    BASE_DIR / 'static',
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
