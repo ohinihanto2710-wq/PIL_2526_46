@@ -80,20 +80,24 @@ USE_TZ = True
 # ==============================================================================
 # 🎨 CONFIGURATION PRODUCTIONS DES STYLES (CORRIGÉE)
 # ==============================================================================
-STATIC_URL = 'static/'
+# ==============================================================================
+# 🎨 CONFIGURATION DES TEMPLATES STATIQUES POUR DEPLOIEMENT
+# ==============================================================================
+STATIC_URL = '/static/'
 
-# Indique à Django de chercher vos CSS dans le nouveau dossier static
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Force Django à utiliser l'application de gestion des fichiers en production
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
 
 AUTH_USER_MODEL = 'core.Utilisateur'
 
