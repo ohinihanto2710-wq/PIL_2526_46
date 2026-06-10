@@ -29,7 +29,7 @@ Application web de mise en relation entre mentors et mentorés pour l'IFRI.
 
 ## Équipe
 - ATHINDEHOU Oluwa-Tobi Amos Fréjus
-- Membre 2
+- AMEHO Fifamè Grâce
 - Membre 3
 - Membre 4
 - Membre 5
