@@ -6,8 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-=^1ft(%38m-*=2na1z3u-0rx$3x2lhs(lpj&txo+cn$pho1zlp')
 
-# 🚨 FORCE LE MODE DEBUG SUR TRUE POUR RENDRE LE SERVEUR FLEXIBLE EN PRODUCTION
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -31,7 +30,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Gère les CSS en production
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -62,7 +61,7 @@ WSGI_APPLICATION = 'mentorlink.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        default=os.environ.get('DATABASE_URL', f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
         conn_max_age=600
     )
 }
@@ -80,19 +79,14 @@ USE_I18N = True
 USE_TZ = True
 
 # ==============================================================================
-# 🎨 CONFIGURATION DES FICHIERS STATIQUES (CSS / IMAGES)
-# ==============================================================================
-# ==============================================================================
 # 🎨 CONFIGURATION DES FICHIERS STATIQUES (CSS / JS) POUR PRODUCTION
 # ==============================================================================
 STATIC_URL = '/static/'
 
-# On indique à Django de collecter les fichiers depuis ton dossier static
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-# Le dossier où Django va compiler les fichiers sur Render (Ne pas toucher)
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STORAGES = {
@@ -101,14 +95,23 @@ STORAGES = {
     },
 }
 
-
-
 AUTH_USER_MODEL = 'core.Utilisateur'
 
+# ==============================================================================
+# 🔐 CONFIGURATION DE SÉCURITÉ CORS ET CSRF POUR PRODUCTION
+# ==============================================================================
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",
     "http://localhost:5500",
-    "https://mentorlink-ifri.onrender.com"
+    "https://onrender.com",
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://onrender.com",
+    "https://ngrok-free.dev",
 ]
 
 REST_FRAMEWORK = {
