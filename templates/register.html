@@ -25,26 +25,28 @@
       <h2 class="auth-title">Créer un compte</h2>
       <p class="auth-sub">Rejoins la communauté d'entraide de l'IFRI.</p>
 
-      <!-- 🚨 ID indispensable pour intercepter la soumission dans app.js -->
-      <form id="form-inscription">
+      <form id="form-inscription" onsubmit="event.preventDefault();">
         <div class="form-group">
           <label for="nom">Nom complet</label>
+          <!-- 🚨 L'id="nom" a été rajouté ici -->
           <input type="text" id="nom" required placeholder="Ex: Jean Doe" class="form-input"/>
         </div>
 
         <div class="form-group">
           <label for="email">Adresse Email</label>
+          <!-- 🚨 L'id="email" a été rajouté ici -->
           <input type="email" id="email" required placeholder="Ex: jean.doe@email.com" class="form-input"/>
         </div>
 
         <div class="form-group">
           <label for="password">Mot de passe</label>
+          <!-- 🚨 L'id="password" a été rajouté ici -->
           <input type="password" id="password" required placeholder="Votre mot de passe" class="form-input"/>
         </div>
 
         <div class="form-group">
           <label for="role">Vous êtes :</label>
-          <!-- 🚨 Rôles calqués sur vos choix de migration Django -->
+          <!-- 🚨 L'id="role" a été rajouté ici -->
           <select id="role" required class="form-input">
             <option value="mentore">Mentoré (Élève)</option>
             <option value="mentor">Mentor (Guide)</option>
@@ -52,9 +54,10 @@
           </select>
         </div>
 
+        <!-- 🚨 Appel forcé de la fonction avec onclick -->
         <button type="button" class="btn-primary full" onclick="inscription(event)">S'inscrire</button>
       </form>
-      <!-- 🚨 Redirection sémantique corrigée pour la racine de Render -->
+
       <p class="auth-switch">Déjà inscrit ? <a href="/">Se connecter</a></p>
     </div>
   </div>
