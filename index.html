@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport Général - IFRI MentorLink</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #090a15;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.1) 0%, transparent 40%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+        }
+
+        /* Ambient Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.5;
+            animation: float 15s infinite ease-in-out alternate;
+        }
+
+        .orb-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #4f46e5; }
+        .orb-2 { bottom: -10%; right: -10%; width: 600px; height: 600px; background: #0ea5e9; animation-delay: -5s; }
+        .orb-3 { top: 40%; left: 40%; width: 400px; height: 400px; background: #8b5cf6; animation-delay: -10s; opacity: 0.3; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -50px) scale(1.1); }
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Team Grid */
+        .team-member {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.9) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+            border-radius: inherit;
+        }
+
+        .team-member:hover::before {
+            opacity: 1;
+        }
+
+        .member-info {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            z-index: 20;
+            transition: bottom 0.3s ease;
+            opacity: 0;
+        }
+
+        .team-member:hover .member-info {
+            bottom: 0;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="relative antialiased text-gray-200">
+
+    <!-- Background Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card !rounded-none !border-t-0 !border-l-0 !border-r-0 border-b border-white/10 bg-black/20 py-4 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-[0_0_15px_rgba(99,102,241,0.5)]">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <span class="text-xl font-bold tracking-wide">Mentor<span class="text-sky-400">Link</span></span>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="#vision" class="hover:text-sky-400 transition-colors">Vision</a>
+                <a href="#features" class="hover:text-sky-400 transition-colors">Fonctionnalités</a>
+                <a href="#tech" class="hover:text-sky-400 transition-colors">Technologies</a>
+                <a href="#team" class="hover:text-sky-400 transition-colors">Équipe</a>
+            </div>
+            <a href="https://github.com/ohinihanto2710-wq/PIL_2526_46" target="_blank" class="px-5 py-2 rounded-full border border-gray-600 hover:border-white transition-colors text-sm flex items-center gap-2">
+                <i class="fa-brands fa-github"></i> Dépôt Git
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center pt-20 px-6 relative">
+        <div class="text-center max-w-4xl mx-auto reveal active">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-sky-400/30 bg-sky-500/10 text-sky-300 text-xs font-semibold uppercase tracking-widest mb-8">
+                <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+                Rapport Général - Projet Intégrateur
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+                Connecter les talents de <br>
+                <span class="gradient-text">l'IFRI de demain</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+                Une plateforme moderne conçue pour faciliter le mentorat académique et professionnel entre les étudiants de l'Institut de Formation et de Recherche en Informatique.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#vision" class="px-8 py-4 rounded-full gradient-bg text-white font-semibold shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)] transition-all transform hover:-translate-y-1">
+                    Découvrir le projet
+                </a>
+                <div class="px-8 py-4 rounded-full border border-gray-700 bg-white/5 font-medium flex items-center gap-3">
+                    <i class="fa-solid fa-users text-sky-400"></i> Groupe 46
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Concept -->
+    <section id="vision" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="glass-card p-10 md:p-16 reveal relative overflow-hidden">
+            <div class="absolute -right-20 -top-20 text-[15rem] text-white/5 rotate-12 pointer-events-none">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <div class="max-w-3xl relative z-10">
+                <h2 class="text-sm text-sky-400 font-bold tracking-widest uppercase mb-3">La Vision</h2>
+                <h3 class="text-3xl md:text-4xl font-bold mb-6">Pourquoi MentorLink ?</h3>
+                <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                    Au sein de l'IFRI, de nombreux étudiants rencontrent des difficultés dans certaines matières ou cherchent des conseils pour leur carrière. Parallèlement, des étudiants plus expérimentés possèdent les compétences pour les aider.
+                </p>
+                <p class="text-gray-300 text-lg leading-relaxed">
+                    <strong>MentorLink</strong> est né de ce besoin : créer un pont entre l'expérience et l'apprentissage. C'est un espace bienveillant où le partage de connaissances devient simple, structuré et efficace grâce à un algorithme de matching intelligent.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-sm text-indigo-400 font-bold tracking-widest uppercase mb-3">Au cœur de la plateforme</h2>
+            <h3 class="text-3xl md:text-4xl font-bold">Fonctionnalités Principales</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="glass-card p-8 reveal">
+                <div class="w-14 h-14 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-2xl mb-6 shadow-inner">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-3 text-white">Sécurité & Profil</h4>
+                <p class="text-gray-400 leading-relaxed text-sm">
+                    Authentification robuste, gestion fine des profils, et suivi des compétences/lacunes pour une personnalisation maximale.
+                </p>
+            </div>
+            
+            <div class="glass-card p-8 reveal" style="transition-delay: 100ms;">
+                <div class="w-14 h-14 rounded-2xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-2xl mb-6 shadow-inner">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-3 text-white">Annonces Intelligentes</h4>
+                <p class="text-gray-400 leading-relaxed text-sm">
+                    Publication d'offres et de demandes de mentorat avec filtres de recherche avancés par filière et niveau d'étude.
+                </p>
+            </div>
+
+            <div class="glass-card p-8 reveal" style="transition-delay: 200ms;">
+                <div class="w-14 h-14 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl mb-6 shadow-inner">
+                    <i class="fa-solid fa-network-wired"></i>
+                </div>
+                <h4 class="text-xl font-bold mb-3 text-white">Smart Matching</h4>
+                <p class="text-gray-400 leading-relaxed text-sm">
+                    Notre algorithme analyse les profils pour proposer automatiquement les meilleures correspondances Mentor/Mentoré.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture & Tech Stack -->
+    <section id="tech" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="glass-card p-10 md:p-16 reveal border-t-4 border-t-indigo-500">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-sm text-indigo-400 font-bold tracking-widest uppercase mb-3">Sous le capot</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-8">Technologies Utilisées</h3>
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        MentorLink repose sur une architecture monolithique Django solide, garantissant sécurité, rapidité de développement et facilité de déploiement, couplée à une interface moderne.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-gray-800/50 rounded-xl p-4 border border-gray-700/50 flex items-center gap-4 hover:border-indigo-500/50 transition-colors">
+                            <i class="fa-brands fa-python text-3xl text-yellow-500 w-10 text-center"></i>
+                            <div>
+                                <h5 class="font-bold text-white">Python / Django</h5>
+                                <p class="text-xs text-gray-400">Backend, ORM, Sécurité, Architecture MVT</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-xl p-4 border border-gray-700/50 flex items-center gap-4 hover:border-sky-500/50 transition-colors">
+                            <i class="fa-brands fa-html5 text-3xl text-orange-500 w-10 text-center"></i>
+                            <div>
+                                <h5 class="font-bold text-white">HTML5, CSS3 & JavaScript</h5>
+                                <p class="text-xs text-gray-400">Frontend réactif, animations (TailwindCSS)</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-xl p-4 border border-gray-700/50 flex items-center gap-4 hover:border-blue-500/50 transition-colors">
+                            <i class="fa-solid fa-database text-3xl text-blue-400 w-10 text-center"></i>
+                            <div>
+                                <h5 class="font-bold text-white">MySQL / MariaDB</h5>
+                                <p class="text-xs text-gray-400">Base de données relationnelle robuste</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/20 to-sky-500/20 rounded-3xl blur-2xl"></div>
+                    <div class="relative bg-[#1e1e2e] rounded-3xl border border-gray-700 shadow-2xl overflow-hidden p-6 font-mono text-sm">
+                        <div class="flex gap-2 mb-4">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="text-gray-400">
+                            <span class="text-indigo-400">PIL1_2526_69/</span><br>
+                            ├── application_principale/ <span class="text-gray-500">// Cœur (Vues, Modèles)</span><br>
+                            │   ├── templates/<br>
+                            │   └── static/<br>
+                            ├── projet_mentorlink/ <span class="text-gray-500">// Config Django</span><br>
+                            ├── Taches_Equipe/ <span class="text-gray-500">// Directives</span><br>
+                            └── requirements.txt
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="py-20 px-6 max-w-7xl mx-auto mb-10">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-sm text-sky-400 font-bold tracking-widest uppercase mb-3">Les Forces Vives</h2>
+            <h3 class="text-3xl md:text-4xl font-bold">L'Équipe de Développement</h3>
+            <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Six esprits brillants unis pour construire la plateforme MentorLink, chacun avec une mission claire.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Membre 1 (Chef + Profil) -->
+            <div class="glass-card team-member p-6 text-center reveal border-t-2 border-t-[#b026ff] hover:border-[#c084fc] transition-colors">
+                <div class="w-20 h-20 mx-auto rounded-full bg-[#b026ff]/20 flex items-center justify-center text-2xl text-[#c084fc] shadow-[0_0_15px_rgba(176,38,255,0.6)] mb-4 border border-[#b026ff]/50">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <h4 class="font-bold text-lg mb-1 text-white">Chef de Projet</h4>
+                <p class="text-sm text-[#c084fc] mb-3 font-medium">Arch., DevOps & Profils</p>
+                <div class="text-xs text-gray-400">
+                    Base de données, algorithme de matching, déploiement et gestion des profils/compétences.
+                </div>
+            </div>
+
+            <!-- Membre 2 (Rapporteur) -->
+            <div class="glass-card team-member p-6 text-center reveal border-t-2 border-t-fuchsia-500 hover:border-fuchsia-400 transition-colors" style="transition-delay: 100ms;">
+                <div class="w-20 h-20 mx-auto rounded-full bg-fuchsia-500/20 flex items-center justify-center text-2xl text-fuchsia-400 shadow-lg mb-4 border border-fuchsia-500/30">
+                    <i class="fa-solid fa-pen-nib"></i>
+                </div>
+                <h4 class="font-bold text-lg mb-1 text-white">Rapporteur</h4>
+                <p class="text-sm text-fuchsia-400 mb-3 font-medium">Documentation & Suivi</p>
+                <div class="text-xs text-gray-400">
+                    Rédaction des rapports d'avancement, suivi des tâches et documentation globale.
+                </div>
+            </div>
+
+            <!-- Membre 3 -->
+            <div class="glass-card team-member p-6 text-center reveal border-t-2 border-t-cyan-500 hover:border-cyan-400 transition-colors" style="transition-delay: 200ms;">
+                <div class="w-20 h-20 mx-auto rounded-full bg-cyan-500/20 flex items-center justify-center text-2xl text-cyan-400 shadow-lg mb-4 border border-cyan-500/30">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h4 class="font-bold text-lg mb-1 text-white">Développeur</h4>
+                <p class="text-sm text-cyan-400 mb-3 font-medium">Module Authentification</p>
+                <div class="text-xs text-gray-400">
+                    Processus d'inscription, connexion et onboarding utilisateur.
+                </div>
+            </div>
+
+            <!-- Membre 4 -->
+            <div class="glass-card team-member p-6 text-center reveal border-t-2 border-t-emerald-500 hover:border-emerald-400 transition-colors">
+                <div class="w-20 h-20 mx-auto rounded-full bg-emerald-500/20 flex items-center justify-center text-2xl text-emerald-400 shadow-lg mb-4 border border-emerald-500/30">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <h4 class="font-bold text-lg mb-1 text-white">Développeur</h4>
+                <p class="text-sm text-emerald-400 mb-3 font-medium">Module Annonces</p>
+                <div class="text-xs text-gray-400">
+                    Création et exploration des offres et demandes de mentorat.
+                </div>
+            </div>
+
+            <!-- Membre 5 -->
+            <div class="glass-card team-member p-6 text-center reveal border-t-2 border-t-amber-500 hover:border-amber-400 transition-colors" style="transition-delay: 100ms;">
+                <div class="w-20 h-20 mx-auto rounded-full bg-amber-500/20 flex items-center justify-center text-2xl text-amber-400 shadow-lg mb-4 border border-amber-500/30">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <h4 class="font-bold text-lg mb-1 text-white">Développeur</h4>
+                <p class="text-sm text-amber-400 mb-3 font-medium">Dashboard & Messagerie</p>
+                <div class="text-xs text-gray-400">
+                    Tableau de bord personnalisé et système de communication intégré.
+                </div>
+            </div>
+
+            <!-- Membre 6 -->
+            <div class="glass-card team-member p-6 text-center reveal border-t-2 border-t-rose-500 hover:border-rose-400 transition-colors" style="transition-delay: 200ms;">
+                <div class="w-20 h-20 mx-auto rounded-full bg-rose-500/20 flex items-center justify-center text-2xl text-rose-400 shadow-lg mb-4 border border-rose-500/30">
+                    <i class="fa-solid fa-gear"></i>
+                </div>
+                <h4 class="font-bold text-lg mb-1 text-white">Développeur</h4>
+                <p class="text-sm text-rose-400 mb-3 font-medium">Paramètres Sécurité</p>
+                <div class="text-xs text-gray-400">
+                    Gestion du compte, modifications mot de passe et confidentialité.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-10 mt-10 relative z-10 bg-black/40 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+                <i class="fa-solid fa-graduation-cap text-sky-400 text-xl"></i>
+                <span class="font-bold">IFRI MentorLink</span>
+            </div>
+            <p class="text-gray-500 text-sm">© 2025-2026 Projet Intégrateur - Groupe 46. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll Reveal Animation
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 100;
+
+                reveals.forEach(reveal => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Trigger on load
+        });
+    </script>
+</body>
+
+</html>
