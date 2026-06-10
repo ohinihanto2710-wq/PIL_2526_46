@@ -500,22 +500,37 @@ const API_URL = "https://onrender.com";
 // 🔐 1. GESTION DE L'AUTHENTIFICATION
 // ==========================================
 
-// Fonction pour s'inscrire (Page enregistrer.html)
+// Fonction pour s'inscrire (Page register.html)
 async function inscription(event) {
-    event.preventDefault();
+    event.preventDefault(); // Empêche la page de se recharger inutilement
     
     const nom = document.getElementById("nom")?.value;
     const email = document.getElementById("email")?.value;
     const password = document.getElementById("password")?.value;
-    const role = document.getElementById("role")?.value; // Recueille 'mentor', 'mentore' ou 'les_deux'
+    const role = document.getElementById("role")?.value; 
 
     try {
         const response = await fetch(`${API_URL}/api/auth/register/`, {
-
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nom, email, password, role })
         });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Inscription réussie ! Connectez-vous.");
+            // 🚨 ✅ LA REDIRECTION CORRIGÉE POUR RENDER ICI :
+            window.location.href = "/"; 
+        } else {
+            alert("Erreur d'inscription : " + (data.error || "Vérifiez vos informations"));
+        }
+    } catch (error) {
+        console.error("Erreur réseau :", error);
+        alert("Impossible de contacter le serveur backend.");
+    }
+}
+
 
         const data = await response.json();
 
