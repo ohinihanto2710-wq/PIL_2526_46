@@ -87,3 +87,8 @@ def creer_conversation(request):
         conv = Conversation.objects.create()
         conv.participants.add(request.user, other)
     return Response({'conv_id': conv.id})
+from django.shortcuts import render
+
+# Cette fonction va lire et afficher le fichier login.html
+def page_accueil_redirection(request):
+    return render(request, 'login.html')
