@@ -14,8 +14,8 @@ async function inscription(event) {
         return;
     }
 
+    // 🚨 COPPIE BIEN TOUT CE BLOC CI-DESSOUS JUSTE APRÈS :
     try {
-        // 🚨 L'ADRESSE OFFICIELLE EST ÉCRITE ICI DIRECTEMENT EN DUR !
         const response = await fetch("https://onrender.com", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -36,6 +36,10 @@ async function inscription(event) {
     }
 }
 
+
+// ==============================================================================
+// 🔐 CONFIGURATION DIRECTE ET COMPLÈTE DE LA CONNEXION
+// ==============================================================================
 // ==============================================================================
 // 🔐 CONFIGURATION DIRECTE ET COMPLÈTE DE LA CONNEXION
 // ==============================================================================
@@ -51,7 +55,7 @@ async function connexion(event) {
     }
 
     try {
-        // 🚨 L'ADRESSE OFFICIELLE POUR LA CONNEXION !
+        // 🚨 LA BONNE ADRESSE ENTIÈRE AVEC LE SLASH FINAL EST ICI :
         const response = await fetch("https://onrender.com", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -72,3 +76,4 @@ async function connexion(event) {
         alert("Erreur de connexion au serveur.");
     }
 }
+
