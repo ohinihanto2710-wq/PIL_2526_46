@@ -10,6 +10,7 @@ Application web de mise en relation entre mentors et mentorés pour l'IFRI.
 - Messagerie instantanée en temps réel
 - Réinitialisation de mot de passe par email
 - Accès via le lien suivant : https://mentorlink-ifri.onrender.com
+  Accès au prototype via le lien suivant:  https://www.figma.com/proto/jj6GI04uGWgoK6uce8XXjr/Sans-titre?node-id=149-37&t=s7XWLVzMNozK3e1d-1
 
 ## Technologies
 - Backend : Python / Django
