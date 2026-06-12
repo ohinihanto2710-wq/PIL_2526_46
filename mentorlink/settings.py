@@ -33,11 +33,12 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # '# django.middleware.csrf.CsrfViewMiddleware',  # 🚨 METTEZ UN DIÈSE ICI POUR LE DÉSACTIVER !
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # '# django.middleware.clickjacking.XFrameOptionsMiddleware',  # 🚨 METTEZ UN DIÈSE ICI AUSSI !
 ]
+
 
 ROOT_URLCONF = 'mentorlink.urls'
 
@@ -111,7 +112,7 @@ CORS_ALLOWED_ORIGINS = [
 # ==============================================================================
 # 🔐 SÉCURITÉ PRODUCTIONS : CORS & CSRF POUR RENDER
 # ==============================================================================
-CORS_ALLOW_ALL_ORIGINS = True  # Autorise le JavaScript en ligne à parler au Backend
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
@@ -120,7 +121,6 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 ALLOWED_HOSTS = ['*']
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
